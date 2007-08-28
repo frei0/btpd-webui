@@ -1,0 +1,67 @@
+===============================================================================
+BTPDwebui - BitTorrent Protocol Daemon Web UI
+===============================================================================
+
+BTPDwebui is a simple web frontend to the btpd program.  It also the user
+to add, start, stop, and delete torrents as well as view their status.
+
+Authors:
+    Scott Walker - iswalker at gmail dot com
+    
+Contributers:
+    Putru Paler  - bencode.py module
+    Tomas Styblo - htmltmpl.py module
+    
+Homepage:
+    http://code.google.com/p/btpd-webui/
+
+
+===============================================================================
+Installation Instructions
+===============================================================================
+
+Requirements:
+
+- Python 2.4 or higher.
+
+- Twisted 2.5 or higher (specifically twisted-web)     
+  In Ubuntu Linux, install the following packages:
+    - python-twisted-bin 
+    - python-twisted-core
+    - python-twisted-web      
+  NOTE: BTPDwebui is written using the twitsted-web framework,
+        _not_ the twisted-web2 framework.            
+
+- Btpd 0.13
+
+
+Installation:
+    
+Simply run 'python setup.py install' from the btpd-webui directory.
+Run 'python setup.py --help' for more options.
+
+
+===============================================================================
+Usage
+===============================================================================
+
+After successful installation, BTPDwebui can be controlled using the following:
+btpd-webui {start|stop|restart|status}
+
+This will run BTPDwebui as a daemon using the twistd program.
+If you want to run BTPDwebui directly, you can use btpd-webui-server.
+
+The first time the program runs, it creats the ~/.btpdwebui directory.  This
+directory contains the configuration file and default content directory.  
+It also contains the twistd.pid and twistd.log files when BTPDwebui is 
+being executed using the twistd program.
+
+
+===============================================================================
+Configuration
+===============================================================================
+
+Configuration is done through the ~/.btpdwebui/config file.  A default
+configuration file is created the first time BTPDwebui is launched. 
+Changes do not take effect until btpd-webui is restarted.
+
