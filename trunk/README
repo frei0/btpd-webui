@@ -1,5 +1,5 @@
 ===============================================================================
-BTPDwebui - BitTorrent Protocol Daemon Web UI
+BtpdWebui - BitTorrent Protocol Daemon Web UI
 ===============================================================================
 
 BTPDwebui is a simple web frontend to the btpd program.  It also the user
