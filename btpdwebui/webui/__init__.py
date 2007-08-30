@@ -93,6 +93,7 @@ class Torrents(Resource):
              TAttrs.PCOUNT,
              TAttrs.RATEDWN, 
              TAttrs.RATEUP,
+             TAttrs.TOTUP,
              TAttrs.STATE]      
 
     def _format_size(self, size):        
@@ -110,15 +111,18 @@ class Torrents(Resource):
         if error == TErrors.OK:                
             state = TStates.enumstr(data[TAttrs.STATE])            
             template.set(TStates.enumstr(data[TAttrs.STATE]), '1')
-            template.set('num',   data[TAttrs.NUM])
-            template.set('name',  data[TAttrs.NAME])
-            template.set('got',   self._format_size(data[TAttrs.CGOT]))
-            template.set('size',  self._format_size(data[TAttrs.CSIZE]))
-            template.set('urate', self._format_rate(data[TAttrs.RATEUP]))
-            template.set('drate', self._format_rate(data[TAttrs.RATEDWN]))
+            template.set('num',    data[TAttrs.NUM])
+            template.set('name',   data[TAttrs.NAME])
+            template.set('got',    self._format_size(data[TAttrs.CGOT]))
+            template.set('size',   self._format_size(data[TAttrs.CSIZE]))
+            template.set('urate',  self._format_rate(data[TAttrs.RATEUP]))
+            template.set('drate',  self._format_rate(data[TAttrs.RATEDWN]))
+            template.set('totup',  self._format_size(data[TAttrs.TOTUP]))
             template.set('peers', data[TAttrs.PCOUNT])
             percent = data[TAttrs.CGOT] * 100.0 / data[TAttrs.CSIZE]
             template.set('percent', '%d' % percent)
+            ratio = data[TAttrs.TOTUP] * 100.0 / data[TAttrs.CSIZE]
+            template.set('ratio', '%d' % ratio)
             self._torrents.append(template.render('torrents_torrent'))           
         else:
             # Not quite sure what to do here...
