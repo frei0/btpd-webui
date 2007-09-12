@@ -1,4 +1,4 @@
-html { min-width: 820px; }
+html { min-width: 840px; }
 
 body, div, td, th, h2, h3, h4 {
     font-family: verdana, sans-serif;
@@ -8,7 +8,7 @@ body, div, td, th, h2, h3, h4 {
 }
 
 body {
-    background: #333;
+    background: #fff;
     margin: 0;
 }
 
@@ -22,6 +22,7 @@ a:active, a:hover {
 }
 
 #header {
+    background: #333;
     height: 48px;
 }
 
@@ -36,20 +37,19 @@ a:active, a:hover {
     border-right: 1px solid #555;
 }
 
-#title span {
+#title #webui {
     color: #428ad4;
+}
+
+#title #version {
+    color: #fff;
+    font-size: 9px;
 }
 
 #content {
     background: #fff;
     min-height: 400px;
     padding: 12px;
-}
-
-#footer {
-    color: #fff;
-    text-align: center;
-    padding: 4px 12px 0 12px;
 }
 
 #message { 
@@ -65,6 +65,6 @@ a:active, a:hover {
 
 .info {
     border: 1px solid #333;
-    background-color: #f6f6f6;
+    background-color: #eee;
 }
 

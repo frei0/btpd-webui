@@ -11,10 +11,13 @@
 </head>
 <body>
 <div id="header">
-<div id="title">Btpd<span>Webui</span></div>
+<div id="title">
+Btpd<span id="webui">Webui</span><span id="version"> <TMPL_VAR version></span>
+</div>
 </div>
 <div id="content">
 <div align="center">
+<div id="login-box">
 <table id="login-table">
 <tr>
 <td align="right">Username: </td>
@@ -31,8 +34,6 @@
 </table>
 </div>
 </div>
-<div id="footer">
-Version <TMPL_VAR version>
 </div>
 </body>
 </html>
