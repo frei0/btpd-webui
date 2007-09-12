@@ -15,48 +15,50 @@ startUpdater(<TMPL_VAR frequency>, '<TMPL_VAR tab>');
 </TMPL_UNLESS>
 </head>
 <body>
-<div id="topnav">
-Logged in as <TMPL_VAR username> | <a href="/logout">Logout</a>
-</div>
-<div id="title">
-<h1>Btpd<span>Webui</span></h1>
-</div>
-<div id="mainnav">
+
+<div id="header">
+<div id="title">Btpd<span>Webui</span></div>
+<ul id="menu">
+<TMPL_IF tab_new>
+<li class="current"><a href="/torrents?tab=new">New Torrent</a></li>
+<li><a href="/torrents?tab=all">All</a></li>
+<li><a href="/torrents?tab=active">Active</a></li>
+<li><a href="/torrents?tab=inactive">Inactive</a></li>
+</TMPL_IF>
 <TMPL_IF tab_all>
-<a href="/torrents?tab=new">New Torrent</a> | 
-All | 
-<a href="/torrents?tab=active">Active</a> | 
-<a href="/torrents?tab=inactive">Inactive</a>
+<li><a href="/torrents?tab=new">New Torrent</a></li>
+<li class="current"><a href="/torrents?tab=all">All</a></li>
+<li><a href="/torrents?tab=active">Active</a></li>
+<li><a href="/torrents?tab=inactive">Inactive</a></li>
 </TMPL_IF>
 <TMPL_IF tab_active>
-<a href="/torrents?tab=new">New Torrent</a> | 
-<a href="/torrents?tabs=all">All</a> | 
-Active | 
-<a href="/torrents?tab=inactive">Inactive</a>
+<li><a href="/torrents?tab=new">New Torrent</a></li>
+<li><a href="/torrents?tab=all">All</a></li>
+<li class="current"><a href="/torrents?tab=active">Active</a></li>
+<li><a href="/torrents?tab=inactive">Inactive</a></li>
 </TMPL_IF>
 <TMPL_IF tab_inactive>
-<a href="/torrents?tab=new">New Torrent</a> | 
-<a href="/torrents?tabs=all">All</a> | 
-<a href="/torrents?tab=active">Active</a> | 
-Inactive
+<li><a href="/torrents?tab=new">New Torrent</a></li>
+<li><a href="/torrents?tab=all">All</a></li>
+<li><a href="/torrents?tab=active">Active</a></li>
+<li class="current"><a href="/torrents?tab=inactive">Inactive</a></li>
 </TMPL_IF>
-<TMPL_IF tab_new>
-New Torrent | 
-<a href="/torrents?tabs=all">All</a> | 
-<a href="/torrents?tab=active">Active</a> | 
-<a href="/torrents?tab=inactive">Inactive</a>
-</TMPL_IF>
+</ul>
+<div id="logout">
+Logged in as btpd | <a href="/logout">Logout</a>
+</div>
 </div>
 <div id="content">
 <TMPL_IF tab_new>
 <TMPL_IF new_error>
 <div id="message" class="error">Error: <TMPL_VAR new_error></div>
-<br /><br />
+<br />
 </TMPL_IF>
 <TMPL_IF new_added>
 <div id="message" class="info">Successfully added torrent.</div>
 <br /><br />
 </TMPL_IF>
+<div id="add-box">
 <form name="upload" id="upload" method="post" enctype="multipart/form-data">
 Select the torrent you wish to add.<br />
 <input type="file" name="torrent" size="50" /><br /><br />
@@ -64,9 +66,10 @@ Select the torrent you wish to add.<br />
 <input type="checkbox" name="topdir" />Append the torrent name to the content path (<TMPL_VAR contentdir>).<br /><br />
 <input type="submit" value="Add Torrent" />
 </form>
+</div>
 </TMPL_IF>
 </div>
-<div align="center">
+<div id="footer">
 Version <TMPL_VAR version>
 </div>
 </body>

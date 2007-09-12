@@ -1,4 +1,4 @@
-html { min-width: 600px; }
+html { min-width: 820px; }
 
 body, div, td, th, h2, h3, h4 {
     font-family: verdana, sans-serif;
@@ -8,28 +8,48 @@ body, div, td, th, h2, h3, h4 {
 }
 
 body {
-    background: #ccc url("/back.png") repeat-x;
-    margin: 4px 48px 24px 48px;
+    background: #333;
+    margin: 0;
 }
 
 a, a:visited {
     text-decoration: none;
-    color: #369;    
+    color: #428ad4;    
 }
 
 a:active, a:hover {
     text-decoration: underline;
-    color: #333;
 }
 
-h1 {
-    font-size: 200%;
-    padding: 0;
-    margin: 0;
+#header {
+    height: 48px;
 }
 
-h1 span {
-    color: #369;
+#title {
+    float: left;
+    display: block;
+    height: 30px;
+    padding: 18px 24px 0 24px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border-right: 1px solid #555;
+}
+
+#title span {
+    color: #428ad4;
+}
+
+#content {
+    background: #fff;
+    min-height: 400px;
+    padding: 12px;
+}
+
+#footer {
+    color: #fff;
+    text-align: center;
+    padding: 4px 12px 0 12px;
 }
 
 #message { 
@@ -39,12 +59,12 @@ h1 span {
 }
 
 .error {
-    border: 1px solid #f66;
+    border: 1px solid #f33;
     background-color: #fdd;
 }
 
 .info {
-    border: 1px solid #777;
-    background-color: #eee;
+    border: 1px solid #333;
+    background-color: #f6f6f6;
 }
 

@@ -73,6 +73,7 @@ class Login(Resource):
             return 'Invalid credentials'
 
     def render_GET(self, request):
+        template.set('version', PROGRAM_VERSION)
         return template.render('login')
 
 
