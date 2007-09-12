@@ -17,7 +17,9 @@ startUpdater(<TMPL_VAR frequency>, '<TMPL_VAR tab>');
 <body>
 
 <div id="header">
-<div id="title">Btpd<span>Webui</span></div>
+<div id="title">
+Btpd<span id="webui">Webui</span><span id="version"> <TMPL_VAR version></span>
+</div>
 <ul id="menu">
 <TMPL_IF tab_new>
 <li class="current"><a href="/torrents?tab=new">New Torrent</a></li>
@@ -68,9 +70,6 @@ Select the torrent you wish to add.<br />
 </form>
 </div>
 </TMPL_IF>
-</div>
-<div id="footer">
-Version <TMPL_VAR version>
 </div>
 </body>
 </html>
