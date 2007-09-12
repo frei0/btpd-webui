@@ -82,6 +82,7 @@ class Logout(Resource):
     def render_GET(self, request):
         session = request.getSession()
         session.expire()
+        template.set('version', PROGRAM_VERSION)
         return template.render('login')
 
 
