@@ -24,6 +24,7 @@ a:active, a:hover {
 #header {
     background: #333;
     height: 48px;
+    border-bottom: 1px solid #555;
 }
 
 #title {
