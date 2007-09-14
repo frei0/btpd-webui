@@ -33,17 +33,6 @@ def btpd():
         _btpd_inst = Btpd()
     return _btpd_inst
 
-def sessionmethod(meth):
-    """Decorator for methods that should only be run
-    from within an already established session."""
-    def newmeth(self, request):
-        session = request.getSession()           
-        if not (hasattr(session, 'active') and session.active):
-            return template.render('noauth')
-        self.session = session
-        return meth(self, request)
-    return newmeth
-
 def getarg(request, name):
     """Twisted args are always a list.  This function returns the first
     item in the list if the arg is present, or None if it isn't."""
@@ -98,6 +87,13 @@ class Torrents(Resource):
              TAttrs.TOTUP,
              TAttrs.STATE]      
 
+    def _load_session(self, request):
+        """Get the current established session"""
+        session = request.getSession()           
+        if not (hasattr(session, 'active') and session.active):
+            raise Exception('invalid session')
+        self._session = session
+
     def _format_size(self, size):        
         labels = ('B', 'KB', 'MB', 'GB')
         for i in range(len(labels)):
@@ -138,18 +134,22 @@ class Torrents(Resource):
         template.set('version', PROGRAM_VERSION)
         template.set('frequency', userconf['update_frequency'])
         template.set('contentdir', userconf['content_directory'])
-        template.set('username', self.session.username)            
+        template.set('username', self._session.username)            
         return template.render('torrents')
 
-    @sessionmethod
-    def render_GET(self, request):
+    def render_GET(self, request):        
         tab = getarg(request, 'tab')
         if tab not in ('new', 'all', 'active', 'inactive'): tab = 'all'        
         action = getarg(request, 'action')
         if action is None: # page request
+            try:
+                self._load_session(request)
+            except:
+                return template.render('noauth')
             return self._make_tab(tab)
         else: # ajax update request
             try:
+                self._load_session(request)
                 self._torrents = []
                 btpd().get(TActivity.enumval(tab), 
                            Torrents.attrs, self._btpd_cb)
@@ -165,12 +165,12 @@ class Torrents(Resource):
         if not exists(path): makedirs(path)
         return normpath(abspath(path))
 
-    @sessionmethod
     def render_POST(self, request):
         action = getarg(request, 'action')           
         if action in ('start', 'stop', 'delete'):
             # ajax torrent action request
             try:
+                self._load_session(request)
                 num = int(getarg(request, 'num'))
                 getattr(btpd(), action)(num)
             except Exception, err:
@@ -178,6 +178,7 @@ class Torrents(Resource):
             return 'OK'
         else: # torrent upload 
             try:
+                self._load_session(request)
                 # create the content directory if it doesn't
                 # already exist, and get the absolute path.
                 cdir = self._makepath(userconf['content_directory'])
