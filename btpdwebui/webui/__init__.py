@@ -75,6 +75,9 @@ class Logout(Resource):
         return template.render('login')
 
 
+class InvalidSession(Exception):
+    pass
+
 class Torrents(Resource):
     
     attrs = [TAttrs.NAME, 
@@ -91,7 +94,7 @@ class Torrents(Resource):
         """Get the current established session"""
         session = request.getSession()           
         if not (hasattr(session, 'active') and session.active):
-            raise Exception('invalid session')
+            raise InvalidSession('invalid session')
         self._session = session
 
     def _format_size(self, size):        
@@ -152,7 +155,7 @@ class Torrents(Resource):
                 self._load_session(request)
                 self._torrents = []
                 btpd().get(TActivity.enumval(tab), 
-                           Torrents.attrs, self._btpd_cb)
+                           Torrents.attrs, self._btpd_cb)              
             except Exception, err:
                 template.set('error', str(err))
                 return template.render('torrents_error')
@@ -190,6 +193,8 @@ class Torrents(Resource):
                 tnum = btpd().add(torrent, cdir, topdir)
                 if getarg(request, 'start'): btpd().start(tnum)
                 template.set('new_added', '1')
+            except InvalidSession:
+                return template.render('noauth')
             except Exception, err:            
                 template.set('new_error', str(err))                               
             return self._make_tab('new')

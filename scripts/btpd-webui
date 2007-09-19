@@ -20,7 +20,7 @@
 #
 
 NAME=btpd-webui
-HOMEDIR=$HOME/.btpdwebui
+HOMEDIR=$HOME/.btpd-webui
 LOGFILE=$HOMEDIR/twistd.log
 PIDFILE=$HOMEDIR/twistd.pid
 

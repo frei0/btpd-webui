@@ -21,9 +21,9 @@ import os
 from btpdwebui.config.configfile import ConfigFile
 
 # global install information
-PROGRAM_NAME    = 'BTPDWebui'
-PROGRAM_VERSION = '0.1'
-HOME_DIR     = os.path.join(os.path.expanduser('~'), '.btpdwebui')
+PROGRAM_NAME    = 'btpd-webui'
+PROGRAM_VERSION = '0.2'
+HOME_DIR     = os.path.join(os.path.expanduser('~'), '.btpd-webui')
 CONFIG_FILE  = os.path.join(HOME_DIR, 'config')
 PID_FILE     = os.path.join(HOME_DIR, 'pid')
 STATIC_DIR   = os.path.join(__path__[0], '../data/static') 
@@ -52,9 +52,9 @@ def valid_ascii(x):
 # config defaults structure
 _defaults = {
     'port'              : ('12321', valid_port,  'HTTP Server port'),
-    'username'          : ('btpd',  valid_ascii, 'Web UI username'),
-    'password'          : ('btpd',  valid_ascii, 'Web UI password'),
-    'update_frequency'  : ('2',     valid_int,   'Web UI update interval (in seconds)'),
+    'username'          : ('btpd',  valid_ascii, 'WebUI username'),
+    'password'          : ('btpd',  valid_ascii, 'WebUI password'),
+    'update_frequency'  : ('2',     valid_int,   'WebUI update interval (seconds)'),
     'content_directory' : (os.path.join(HOME_DIR, 'content'), None, 'Base directory for downloaded content')
 }
 
