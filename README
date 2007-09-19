@@ -2,8 +2,7 @@
 BtpdWebui - BitTorrent Protocol Daemon Web UI
 ===============================================================================
 
-BTPDwebui is a simple web frontend to the btpd program.  It also the user
-to add, start, stop, and delete torrents as well as view their status.
+BtpdWebui is a simple web frontend to the btpd program.  
 
 Authors:
     Scott Walker - iswalker at gmail dot com
@@ -17,7 +16,7 @@ Homepage:
 
 
 ===============================================================================
-Installation Instructions
+Installation
 ===============================================================================
 
 Requirements:
@@ -29,7 +28,7 @@ Requirements:
     - python-twisted-bin 
     - python-twisted-core
     - python-twisted-web      
-  NOTE: BTPDwebui is written using the twitsted-web framework,
+  NOTE: BtpdWebui is written using the twitsted-web framework,
         _not_ the twisted-web2 framework.            
 
 - Btpd 0.13
@@ -37,7 +36,7 @@ Requirements:
 
 Installation:
     
-Simply run 'python setup.py install' from the btpd-webui directory.
+Simply run 'python setup.py install' from the btpd-webui-X.XX directory.
 Run 'python setup.py --help' for more options.
 
 
@@ -45,16 +44,14 @@ Run 'python setup.py --help' for more options.
 Usage
 ===============================================================================
 
-After successful installation, BTPDwebui can be controlled using the following:
-btpd-webui {start|stop|restart|status}
+BtpdWebui is usually controlled via the btpd-webui command.  
+This will run BtpdWebui as a daemon using the twistd program.
+If you want to run BtpdWebui directly, you can use btpd-webui-server.
 
-This will run BTPDwebui as a daemon using the twistd program.
-If you want to run BTPDwebui directly, you can use btpd-webui-server.
-
-The first time the program runs, it creats the ~/.btpdwebui directory.  This
+The first time the program runs, it creates the ~/.btpdwebui directory.  This
 directory contains the configuration file and default content directory.  
-It also contains the twistd.pid and twistd.log files when BTPDwebui is 
-being executed using the twistd program.
+It also contains the twistd.pid and twistd.log files when BtpdWebui is using
+twistd to run in daemon mode.
 
 
 ===============================================================================
@@ -62,6 +59,6 @@ Configuration
 ===============================================================================
 
 Configuration is done through the ~/.btpdwebui/config file.  A default
-configuration file is created the first time BTPDwebui is launched. 
+configuration file is created the first time BtpdWebui is launched. 
 Changes do not take effect until btpd-webui is restarted.
 
