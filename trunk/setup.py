@@ -19,7 +19,7 @@
 
 from distutils.core import setup
 
-setup(name='BTPDwebui',
+setup(name='BtpdWebui',
       version='0.2',
       description='Webui for the Bittorrent Protocol Daemon',
       author='Scott Walker',
