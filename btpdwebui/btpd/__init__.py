@@ -113,15 +113,20 @@ class RequestError(Exception):
         return TErrors.enumstr(self.code)
 
 
-def find_btpd_dir():
+def find_btpd_dir(arg_dir=None):
     """Find and return the btpd home directory"""
     if os.environ.has_key('BTPD_HOME'):
+        # environment variable is 1st priority
         btpd_dir = os.environ['BTPD_HOME']
+    elif arg_dir is not None:
+        # 2nd is passed in arg
+        btpd_dir = arg_dir
     else:
+        # 3rd is default
         btpd_dir = os.path.expanduser('~')
         btpd_dir = os.path.join(btpd_dir, '.btpd')
     if not os.path.isdir(btpd_dir):
-        raise Error('cannot find btpd directory')
+        raise Error('cannot find the btpd directory')
     return btpd_dir
 
 def torrent_name(metainfo):
@@ -136,8 +141,8 @@ def torrent_name(metainfo):
 class Btpd(object):
     """Interface to the btpd daemon"""
 
-    def __init__(self, timeout=5):
-        self.btpd_dir = find_btpd_dir()
+    def __init__(self, btpd_dir=None, timeout=5):
+        self.btpd_dir = find_btpd_dir(btpd_dir)
         self.timeout = timeout
         self._sock = None
     
@@ -148,7 +153,7 @@ class Btpd(object):
             self._sock.settimeout(self.timeout)        
             self._sock.connect(sock_path)
         except socket.error:
-            raise Error('failed to connect to Btpd')
+            raise Error('failed to connect to btpd')
 
     def _disconnect(self):
         if self._sock is not None:

@@ -30,7 +30,7 @@ def btpd():
     """Module global btpd instance"""
     global _btpd_inst
     if _btpd_inst is None:
-        _btpd_inst = Btpd()
+        _btpd_inst = Btpd(userconf['btpd_directory'])
     return _btpd_inst
 
 def getarg(request, name):
