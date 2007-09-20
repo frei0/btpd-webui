@@ -23,7 +23,8 @@ from btpdwebui.config.configfile import ConfigFile
 # global install information
 PROGRAM_NAME    = 'btpd-webui'
 PROGRAM_VERSION = '0.2'
-HOME_DIR     = os.path.join(os.path.expanduser('~'), '.btpd-webui')
+USER_DIR     = os.path.expanduser('~')
+HOME_DIR     = os.path.join(USER_DIR, '.btpd-webui')
 CONFIG_FILE  = os.path.join(HOME_DIR, 'config')
 PID_FILE     = os.path.join(HOME_DIR, 'pid')
 STATIC_DIR   = os.path.join(__path__[0], '../data/static') 
@@ -55,7 +56,8 @@ _defaults = {
     'username'          : ('btpd',  valid_ascii, 'WebUI username'),
     'password'          : ('btpd',  valid_ascii, 'WebUI password'),
     'update_frequency'  : ('2',     valid_int,   'WebUI update interval (seconds)'),
-    'content_directory' : (os.path.join(HOME_DIR, 'content'), None, 'Base directory for downloaded content')
+    'content_directory' : (os.path.join(HOME_DIR, 'content'), None, 'Base directory for downloaded content'),
+    'btpd_directory'    : (os.path.join(USER_DIR, '.btpd'),   None, 'Btpd base directory')
 }
 
 # user editable configuration
