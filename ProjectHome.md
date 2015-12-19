@@ -1,0 +1,1 @@
+BTPDwebui is a simple webui for the Bittorrent Protocol Daemon (btpd).  It allows the user to add, start, stop, and delete torrents from btpd, as well as view the status of current torrents.
